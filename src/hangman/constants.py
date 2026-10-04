@@ -23,3 +23,6 @@ WORD_LIST = [
     "squirrel",
     "tortoise",
 ]
+
+## Message shown when the player wins.
+MSG_WIN = "You win!"

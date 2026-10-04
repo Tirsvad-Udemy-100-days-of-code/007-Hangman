@@ -30,3 +30,18 @@ def test_wrong_guess_keeps_blanks():
     g = Game("cat")
     assert g.guess("z") is False
     assert g.display() == "_ _ _"
+
+
+def test_not_won_until_all_letters_guessed():
+    g = Game("hi")
+    assert not g.won
+    g.guess("h")
+    assert not g.won
+    g.guess("i")
+    assert g.won
+
+
+def test_wrong_guesses_do_not_win():
+    g = Game("hi")
+    g.guess("x")
+    assert not g.won

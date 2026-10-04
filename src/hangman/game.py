@@ -58,3 +58,10 @@ class Game:
         @return For example `"p _ n g _ i n"`.
         """
         return " ".join(c if c in self.guesses else BLANK for c in self.word)
+
+    @property
+    def won(self) -> bool:
+        """!
+        @brief True when every letter of the word has been guessed.
+        """
+        return all(c in self.guesses for c in self.word)

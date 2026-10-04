@@ -48,6 +48,8 @@ What each step adds:
 - **Step 4:** start with 6 lives; every wrong guess costs one. At 0 lives the game ends with "You lose" and reveals the word.
 - **Step 5:** a colored ASCII-art title (colors are skipped when the output is not a terminal or the `NO_COLOR` environment variable is set), an ASCII-art gallows that grows with each wrong guess, a friendly message for letters you already guessed, and input validation (only a single letter is accepted). These two are additions that are not in the flowchart.
 
+![Hangman running in a terminal](docs/images/screenshot.png)
+
 The game logic (`src/hangman/game.py`) is separate from the input/output (`src/hangman/main.py`), and all constants live in `src/hangman/constants.py`.
 
 ## 📋 Requirements

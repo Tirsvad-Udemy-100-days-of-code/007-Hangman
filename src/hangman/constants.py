@@ -3,6 +3,8 @@
 @brief Constants shared across the Hangman game.
 """
 
+## Character shown for a letter that has not been guessed yet.
+BLANK = "_"
 ## Words the computer picks from.
 WORD_LIST = [
     "aardvark",

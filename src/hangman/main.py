@@ -3,19 +3,29 @@
 @brief Command-line interface for Hangman.
 """
 
-from hangman.game import choose_word, is_in_word
+from hangman.game import Game, choose_word
+
+
+def say(message: str = "") -> None:
+    """!
+    @brief Show a message to the player; all output goes through here.
+    @param message The text to show.
+    """
+    print(message)
 
 
 def main() -> None:
     """!
-    @brief Entry point: pick a random word and check one guessed letter.
+    @brief Entry point: show the blanks, take one guess and show the result.
     """
-    word = choose_word()
-    guess = input("Guess a letter: ").strip()
-    if is_in_word(word, guess):
-        print(f"Right, '{guess.lower()}' is in the word.")
+    game = Game(choose_word())
+    say(game.display())
+    letter = input("Guess a letter: ").strip()
+    if game.guess(letter):
+        say(f"Right, '{letter.lower()}' is in the word.")
     else:
-        print(f"Wrong, '{guess.lower()}' is not in the word.")
+        say(f"Wrong, '{letter.lower()}' is not in the word.")
+    say(game.display())
 
 
 if __name__ == "__main__":

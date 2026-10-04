@@ -16,13 +16,15 @@ A beginner-friendly Python program that lets you play Hangman in the terminal ag
 
 Day 7 of Udemy's *100 Days of Code™: The Complete Python Pro Bootcamp*. The game is built in five steps that follow the course:
 
-1. Picking a random word and checking answers *(this step)*
-2. Replacing blanks with guesses
+1. Picking a random word and checking answers
+2. Replacing blanks with guesses *(this step)*
 3. Checking if the player has won
 4. Keeping track of the player's lives
 5. Improving the user experience
 
 **Step 1:** the program picks a random word, asks for one letter and tells you whether the letter is in the word.
+
+**Step 2:** the word is shown as blanks (`_ _ _ _ _`). After your guess every matching blank is replaced by the letter.
 
 ## 📋 Requirements
 

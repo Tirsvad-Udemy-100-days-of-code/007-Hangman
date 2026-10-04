@@ -1,4 +1,4 @@
-from hangman.constants import WORD_LIST
+from hangman.constants import MAX_LIVES, WORD_LIST
 from hangman.game import Game, choose_word, is_in_word
 
 
@@ -45,3 +45,24 @@ def test_wrong_guesses_do_not_win():
     g = Game("hi")
     g.guess("x")
     assert not g.won
+
+
+def test_wrong_guess_loses_life():
+    g = Game("cat")
+    assert g.lives == MAX_LIVES
+    g.guess("z")
+    assert g.lives == MAX_LIVES - 1
+
+
+def test_correct_guess_keeps_lives():
+    g = Game("cat")
+    g.guess("c")
+    assert g.lives == MAX_LIVES
+
+
+def test_lost_when_out_of_lives():
+    g = Game("hi", lives=2)
+    g.guess("x")
+    assert not g.lost
+    g.guess("y")
+    assert g.lost and g.over and not g.won

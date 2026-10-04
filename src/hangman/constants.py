@@ -3,6 +3,8 @@
 @brief Constants shared across the Hangman game.
 """
 
+## Number of wrong guesses the player may make before losing.
+MAX_LIVES = 6
 ## Character shown for a letter that has not been guessed yet.
 BLANK = "_"
 ## Words the computer picks from.
@@ -26,3 +28,5 @@ WORD_LIST = [
 
 ## Message shown when the player wins.
 MSG_WIN = "You win!"
+## Message shown when the player loses (the word is appended).
+MSG_LOSE = "You lose. The word was: "

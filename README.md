@@ -18,8 +18,8 @@ Day 7 of Udemy's *100 Days of Code™: The Complete Python Pro Bootcamp*. The ga
 
 1. Picking a random word and checking answers
 2. Replacing blanks with guesses
-3. Checking if the player has won *(this step)*
-4. Keeping track of the player's lives
+3. Checking if the player has won
+4. Keeping track of the player's lives *(this step)*
 5. Improving the user experience
 
 **Step 1:** the program picks a random word, asks for one letter and tells you whether the letter is in the word.
@@ -27,6 +27,8 @@ Day 7 of Udemy's *100 Days of Code™: The Complete Python Pro Bootcamp*. The ga
 **Step 2:** the word is shown as blanks (`_ _ _ _ _`). After your guess every matching blank is replaced by the letter.
 
 **Step 3:** the game keeps asking for letters until every blank is filled, then prints "You win!". (There are no lives yet, so wrong guesses cost nothing.)
+
+**Step 4:** you start with 6 lives. Every wrong guess costs one and shows the lives left. At 0 lives the game ends with "You lose" and reveals the word.
 
 ## 📋 Requirements
 

@@ -5,7 +5,7 @@
 
 import random
 
-from hangman.constants import BLANK, WORD_LIST
+from hangman.constants import BLANK, MAX_LIVES, WORD_LIST
 
 
 def choose_word(words: list[str] | None = None) -> str:
@@ -32,25 +32,31 @@ class Game:
     @brief State of one Hangman game.
     """
 
-    def __init__(self, word: str) -> None:
+    def __init__(self, word: str, lives: int = MAX_LIVES) -> None:
         """!
         @brief Start a new game.
         @param word The secret word.
+        @param lives Wrong guesses allowed before losing.
         """
         ## The secret word.
         self.word = word.lower()
+        ## Lives left.
+        self.lives = lives
         ## Letters guessed so far.
         self.guesses: set[str] = set()
 
     def guess(self, letter: str) -> bool:
         """!
-        @brief Process a guess and reveal the letter if it is in the word.
+        @brief Process a guess; a wrong guess costs a life.
         @param letter A single letter.
         @return True if the letter is in the word.
         """
         letter = letter.lower()
         self.guesses.add(letter)
-        return is_in_word(self.word, letter)
+        correct = is_in_word(self.word, letter)
+        if not correct:
+            self.lives -= 1
+        return correct
 
     def display(self) -> str:
         """!
@@ -65,3 +71,17 @@ class Game:
         @brief True when every letter of the word has been guessed.
         """
         return all(c in self.guesses for c in self.word)
+
+    @property
+    def lost(self) -> bool:
+        """!
+        @brief True when no lives are left.
+        """
+        return self.lives <= 0
+
+    @property
+    def over(self) -> bool:
+        """!
+        @brief True when the game has been won or lost.
+        """
+        return self.won or self.lost

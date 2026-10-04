@@ -13,7 +13,7 @@ def test_play_until_won(monkeypatch, capsys):
     out = run(monkeypatch, capsys, "hi", ["z", "h", "i"])
     assert out.splitlines() == [
         "_ _",
-        "Wrong, 'z' is not in the word.",
+        "Wrong, 'z' is not in the word. Lives left: 5",
         "_ _",
         "Right, 'h' is in the word.",
         "h _",
@@ -26,3 +26,9 @@ def test_play_until_won(monkeypatch, capsys):
 def test_repeated_letter_fills_all_blanks(monkeypatch, capsys):
     out = run(monkeypatch, capsys, "aa", ["a"])
     assert out.splitlines()[-2:] == ["a a", "You win!"]
+
+
+def test_play_until_lost(monkeypatch, capsys):
+    out = run(monkeypatch, capsys, "a", list("bcdefg"))
+    assert "Lives left: 0" in out
+    assert out.splitlines()[-1] == "You lose. The word was: a"

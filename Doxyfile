@@ -1,0 +1,17 @@
+PROJECT_NAME           = "Hangman"
+PROJECT_BRIEF          = "Beginner-friendly Hangman game (Udemy 100 Days of Code, day 7)"
+OUTPUT_DIRECTORY       = docs
+INPUT                  = src README.md
+FILE_PATTERNS          = *.py *.md
+RECURSIVE              = YES
+USE_MDFILE_AS_MAINPAGE = README.md
+OPTIMIZE_OUTPUT_JAVA   = YES
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+AUTOLINK_SUPPORT       = YES
+GENERATE_HTML          = YES
+HTML_OUTPUT            = api
+GENERATE_LATEX         = NO
+SOURCE_BROWSER         = YES
+QUIET                  = YES
+WARN_IF_UNDOCUMENTED   = YES

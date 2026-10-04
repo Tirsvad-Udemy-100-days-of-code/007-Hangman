@@ -1,4 +1,6 @@
-from hangman.constants import MAX_LIVES, WORD_LIST
+import pytest
+
+from hangman.constants import MAX_LIVES, STAGES, WORD_LIST
 from hangman.game import Game, choose_word, is_in_word
 
 
@@ -66,3 +68,22 @@ def test_lost_when_out_of_lives():
     assert not g.lost
     g.guess("y")
     assert g.lost and g.over and not g.won
+
+
+def test_stages_cover_all_lives():
+    assert len(STAGES) == MAX_LIVES + 1
+
+
+def test_repeated_guess_is_free():
+    g = Game("cat")
+    g.guess("z")
+    assert g.guess("Z") is None
+    assert g.lives == MAX_LIVES - 1
+
+
+def test_invalid_guess():
+    g = Game("cat")
+    for bad in ("", "ab", "1", " "):
+        with pytest.raises(ValueError):
+            g.guess(bad)
+    assert g.lives == MAX_LIVES

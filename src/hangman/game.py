@@ -45,13 +45,19 @@ class Game:
         ## Letters guessed so far.
         self.guesses: set[str] = set()
 
-    def guess(self, letter: str) -> bool:
+    def guess(self, letter: str) -> bool | None:
         """!
         @brief Process a guess; a wrong guess costs a life.
         @param letter A single letter.
-        @return True if the letter is in the word.
+        @return True if correct, False if wrong, None if the letter was
+                already guessed (nothing changes).
+        @throws ValueError if @p letter is not a single alphabetic character.
         """
         letter = letter.lower()
+        if len(letter) != 1 or not letter.isalpha():
+            raise ValueError("Guess must be a single letter.")
+        if letter in self.guesses:
+            return None
         self.guesses.add(letter)
         correct = is_in_word(self.word, letter)
         if not correct:

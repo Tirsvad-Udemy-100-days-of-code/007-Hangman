@@ -19,16 +19,36 @@ Day 7 of Udemy's *100 Days of Code™: The Complete Python Pro Bootcamp*. The ga
 1. Picking a random word and checking answers
 2. Replacing blanks with guesses
 3. Checking if the player has won
-4. Keeping track of the player's lives *(this step)*
-5. Improving the user experience
+4. Keeping track of the player's lives
+5. Improving the user experience *(this step)*
 
-**Step 1:** the program picks a random word, asks for one letter and tells you whether the letter is in the word.
+The flowchart from the course:
 
-**Step 2:** the word is shown as blanks (`_ _ _ _ _`). After your guess every matching blank is replaced by the letter.
+```mermaid
+flowchart TD
+    A([START]) --> B[Generate a random word]
+    B --> C[Generate as many blanks as letters in word]
+    C --> D[Ask the user to guess a letter]
+    D --> E{Is the guessed letter in the word?}
+    E -- Yes --> F[Replace the blank with the letter]
+    E -- No --> G[Lose a life]
+    F --> H{Are all the blanks filled?}
+    G --> I{Have they run out of lives?}
+    H -- No --> D
+    I -- No --> D
+    H -- Yes --> J([GAME OVER])
+    I -- Yes --> J
+```
 
-**Step 3:** the game keeps asking for letters until every blank is filled, then prints "You win!". (There are no lives yet, so wrong guesses cost nothing.)
+What each step adds:
 
-**Step 4:** you start with 6 lives. Every wrong guess costs one and shows the lives left. At 0 lives the game ends with "You lose" and reveals the word.
+- **Step 1:** pick a random word, ask for one letter and say whether it is in the word.
+- **Step 2:** show the word as blanks (`_ _ _ _ _`); a correct guess replaces every matching blank.
+- **Step 3:** keep asking for letters until every blank is filled, then print "You win!".
+- **Step 4:** start with 6 lives; every wrong guess costs one. At 0 lives the game ends with "You lose" and reveals the word.
+- **Step 5:** a colored ASCII-art title (colors are skipped when the output is not a terminal or the `NO_COLOR` environment variable is set), an ASCII-art gallows that grows with each wrong guess, a friendly message for letters you already guessed, and input validation (only a single letter is accepted). These two are additions that are not in the flowchart.
+
+The game logic (`src/hangman/game.py`) is separate from the input/output (`src/hangman/main.py`), and all constants live in `src/hangman/constants.py`.
 
 ## 📋 Requirements
 
